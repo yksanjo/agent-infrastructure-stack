@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "agent-stack.fullname" . }}-protocol-adapter
+  labels:
+    {{- include "agent-stack.labels" . | nindent 4 }}
+    app.kubernetes.io/component: protocol-adapter
+spec:
+  type: {{ .Values.protocolAdapter.service.type }}
+  ports:
+    - port: {{ .Values.protocolAdapter.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "agent-stack.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: protocol-adapter
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "agent-stack.fullname" . }}-intent-router
+  labels:
+    {{- include "agent-stack.labels" . | nindent 4 }}
+    app.kubernetes.io/component: intent-router
+spec:
+  type: {{ .Values.intentRouter.service.type }}
+  ports:
+    - port: {{ .Values.intentRouter.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "agent-stack.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: intent-router

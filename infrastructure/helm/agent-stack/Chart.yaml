@@ -1,0 +1,23 @@
+apiVersion: v2
+name: agent-infrastructure-stack
+description: Agent Infrastructure Stack - Protocol adapter, intent router, audit interface, sandbox runtime, and credential manager
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - agent-infrastructure
+  - mcp
+  - a2a
+  - llm-gateway
+  - human-in-the-loop
+home: https://github.com/yksanjo/agent-infrastructure-stack
+sources:
+  - https://github.com/yksanjo/agent-infrastructure-stack
+maintainers:
+  - name: yksanjo
+    email: yksanjo@example.com
+dependencies:
+  - name: redis
+    version: "18.x.x"
+    repository: https://charts.bitnami.com/bitnami
+    condition: redis.enabled
